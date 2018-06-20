@@ -1,10 +1,11 @@
-#include <unordered_map>
 #include <string.h>
-#include <vector>
 #include <random>
+#include <unordered_map>
+#include <vector>
 
 struct grammar {
-  std::unordered_map<std::string, std::vector<std::pair<float, std::string> > > mapping;
+  std::unordered_map<std::string, std::vector<std::pair<float, std::string> > >
+      mapping;
 
   void insert(std::string x, std::string y) {
     mapping[x].push_back(std::make_pair(1.0f, y));
@@ -16,7 +17,7 @@ struct grammar {
 
   std::string get_next(std::string x) {
     float p = 0.0;
-    float rando = ((float) rand() / (RAND_MAX));
+    float rando = ((float)rand() / (RAND_MAX));
     // std::cout << rando << std::endl;
     for (auto e : mapping[x]) {
       p += e.first;
@@ -28,17 +29,16 @@ struct grammar {
   }
 
   std::string gen(int n, std::string inp) {
-    if (n==0) {
+    if (n == 0) {
       return inp;
     } else {
-      std::string temp="";
-      for (auto ch:inp) {
+      std::string temp = "";
+      for (auto ch : inp) {
         std::string t;
         t.push_back(ch);
         temp += get_next(t);
       }
-      return gen(n-1, temp);
+      return gen(n - 1, temp);
     }
   }
-
 };

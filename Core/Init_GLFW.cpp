@@ -1,13 +1,12 @@
-#include <stdio.h>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <stdio.h>
 
 GLFWwindow* window;
 
 int init_GLFW() {
-  
-  if( !glfwInit() ) {
-    fprintf(stderr, "Failed to initialize GLFW\n" );
+  if (!glfwInit()) {
+    fprintf(stderr, "Failed to initialize GLFW\n");
     getchar();
     return -1;
   }
@@ -19,9 +18,9 @@ int init_GLFW() {
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
   // Open a window and create its OpenGL context
-  window = glfwCreateWindow( 1280, 720, "Assignment 3", NULL, NULL);
-  if( window == NULL ){
-    fprintf( stderr, "Failed to open GLFW window.\n" );
+  window = glfwCreateWindow(1280, 720, "Assignment 3", NULL, NULL);
+  if (window == NULL) {
+    fprintf(stderr, "Failed to open GLFW window.\n");
     getchar();
     glfwTerminate();
     return -1;
@@ -29,7 +28,7 @@ int init_GLFW() {
   glfwMakeContextCurrent(window);
 
   // Initialize GLEW
-  glewExperimental = true; // Needed for core profile
+  glewExperimental = true;  // Needed for core profile
   if (glewInit() != GLEW_OK) {
     fprintf(stderr, "Failed to initialize GLEW\n");
     getchar();
@@ -51,4 +50,3 @@ int init_GLFW() {
 
   // glEnable(GL_CULL_FACE);
 }
-

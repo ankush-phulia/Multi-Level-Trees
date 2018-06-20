@@ -59,7 +59,7 @@ glm::mat4 gen_rotation(float x, float y, float z) {
 }
 
 glm::mat4 gen_rotation_deg(float x, float y, float z) {
-  return gen_rotation(x*M_PI/180.0, y*M_PI/180.0, z*M_PI/180.0);
+  return gen_rotation(x * M_PI / 180.0, y * M_PI / 180.0, z * M_PI / 180.0);
 }
 
 glm::mat4 GetTranslationMatrix(float x, float y, float z) {
