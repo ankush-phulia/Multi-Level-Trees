@@ -1,10 +1,12 @@
 #include <GL/glew.h>
-#include <assimp/scene.h>  // Output data structure
-#include <string.h>
-#include <assimp/Importer.hpp>  // C++ importer interface
+
 #include <glm/glm.hpp>
-#include <iostream>
+
+#include <assimp/Importer.hpp>  // C++ importer interface
+#include <assimp/scene.h>       // Output data structure
+
 #include <vector>
+
 
 bool loadObjFile(std::string path, std::vector<unsigned short> &indices,
                  std::vector<glm::vec3> &vertices, std::vector<glm::vec2> &uvs,

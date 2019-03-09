@@ -1,7 +1,7 @@
 #include <GL/glew.h>
-#include <string.h>
+
 #include <fstream>
-#include <iostream>
+#include <string>
 #include <vector>
 
 GLuint LoadShaders(const char* vertex_file_path,

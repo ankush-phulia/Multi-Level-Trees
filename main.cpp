@@ -1,11 +1,9 @@
-#include <GL/glew.h>
-#include <stdlib.h>
 #include <glm/gtc/matrix_transform.hpp>
-#include <stack>
-#include "./Core/Init_Data.cpp"
-#include "./Core/Init_GLFW.cpp"
-#include "./Rendering/Imposter.cpp"
-#include "./Shaders/Shader.cpp"
+
+#include "Core/Init_Data.cpp"
+#include "Core/Init_GLFW.cpp"
+#include "Rendering/Imposter.cpp"
+#include "Shaders/Shader.cpp"
 
 GLuint programID, MatrixID;
 GLuint TextureBody, TextureLeg, TextureHead, TextureLegBase;
@@ -77,11 +75,11 @@ int main(int argc, char **argv) {
     GLuint VertexArrayID;
     glGenVertexArrays(1, &VertexArrayID);
     glBindVertexArray(VertexArrayID);
-    programID = LoadShaders("./Shaders/shader.vs", "./Shaders/shader.fs");
+    programID = LoadShaders("Shaders/shader.vs", "Shaders/shader.fs");
     programObj =
-        LoadShaders("./Shaders/shader_obj.vs", "./Shaders/shader_obj.fs");
+        LoadShaders("Shaders/shader_obj.vs", "Shaders/shader_obj.fs");
     programTexture =
-        LoadShaders("./Shaders/shader_text.vs", "./Shaders/shader_text.fs");
+        LoadShaders("Shaders/shader_text.vs", "Shaders/shader_text.fs");
     MatrixID = glGetUniformLocation(programID, "MVP1");
     MatrixIDText = glGetUniformLocation(programTexture, "MVP1");
     ObjMatrixID = glGetUniformLocation(programObj, "MVP");
@@ -93,9 +91,9 @@ int main(int argc, char **argv) {
 
     init_Data();
 
-    objfile Leaf_Object("./Models/Leaf.obj", 55.0 / 255, 185.0 / 255,
+    objfile Leaf_Object("Models/Leaf.obj", 55.0 / 255, 185.0 / 255,
                         55.0 / 255, 0.1, 0.0);
-    objfile Branch_Object("./Models/Branch.obj", 113.0 / 255, 81.0 / 255,
+    objfile Branch_Object("Models/Branch.obj", 113.0 / 255, 81.0 / 255,
                           81.0 / 255, 0.3, 0.0);
 
     theta = 0.0;

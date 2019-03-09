@@ -1,6 +1,6 @@
-#include "../Models/Obj.cpp"
 #include "Grammar.cpp"
 #include "Manipulate.cpp"
+#include "../Models/Obj.cpp"
 
 #define DegreeToRadiun 0.0174533
 
