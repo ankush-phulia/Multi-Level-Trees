@@ -1,13 +1,10 @@
 #include <GL/glut.h>
-#include <float.h>
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
+
 #include <glm/glm.hpp>
-#include <iostream>
-#include <unordered_map>
+
+#include <string>
+//#include <iostream>
+// #include <unordered_map>
 #include <vector>
 
 using namespace std;
@@ -93,7 +90,6 @@ using namespace std;
 // };
 
 GLuint makeaTree;
-// float x,y,z;
 // Start and end of camera movement
 float eyeX, eyeY, eyeZ, lookX, lookY, lookZ, fieldOfView;
 
@@ -254,20 +250,20 @@ void init(void) {
 
 void keyboard(unsigned char key, int x, int y) {
     switch (key) {
-    case 122: // z - Reduce the field of view of the camera
-        fieldOfView -= 5;
-        glutPostRedisplay();
-        break;
-    case 120: // x - Increase the field of view of the camera
-        fieldOfView += 5;
-        glutPostRedisplay();
-        break;
-    case 100: // d - Increase camera X-coordinate
-        eyeX++;
-        break;
-    case 102: // f - Decrease camera X-coordinate
-        eyeX--;
-        break;
+        case 122: // z - Reduce the field of view of the camera
+            fieldOfView -= 5;
+            glutPostRedisplay();
+            break;
+        case 120: // x - Increase the field of view of the camera
+            fieldOfView += 5;
+            glutPostRedisplay();
+            break;
+        case 100: // d - Increase camera X-coordinate
+            eyeX++;
+            break;
+        case 102: // f - Decrease camera X-coordinate
+            eyeX--;
+            break;
     }
 }
 
