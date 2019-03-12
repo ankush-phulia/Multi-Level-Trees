@@ -60,7 +60,7 @@ void move() {
     }
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
     Tree t(GetPositionMatrix(0, 0, 0), gen_rotation_deg(0, 0, 0));
     t.gen_string("FB", 4);
     int windowWidth = 640;
@@ -70,14 +70,14 @@ int main(int argc, char **argv) {
     srand(static_cast<unsigned>(time(0)));
 
     // Initialise GLFW
-    if (init_GLFW() == -1) return -1;
+    if (init_GLFW() == -1)
+        return -1;
 
     GLuint VertexArrayID;
     glGenVertexArrays(1, &VertexArrayID);
     glBindVertexArray(VertexArrayID);
     programID = LoadShaders("Shaders/shader.vs", "Shaders/shader.fs");
-    programObj =
-        LoadShaders("Shaders/shader_obj.vs", "Shaders/shader_obj.fs");
+    programObj = LoadShaders("Shaders/shader_obj.vs", "Shaders/shader_obj.fs");
     programTexture =
         LoadShaders("Shaders/shader_text.vs", "Shaders/shader_text.fs");
     MatrixID = glGetUniformLocation(programID, "MVP1");
@@ -91,8 +91,8 @@ int main(int argc, char **argv) {
 
     init_Data();
 
-    objfile Leaf_Object("Models/Leaf.obj", 55.0 / 255, 185.0 / 255,
-                        55.0 / 255, 0.1, 0.0);
+    objfile Leaf_Object("Models/Leaf.obj", 55.0 / 255, 185.0 / 255, 55.0 / 255,
+                        0.1, 0.0);
     objfile Branch_Object("Models/Branch.obj", 113.0 / 255, 81.0 / 255,
                           81.0 / 255, 0.3, 0.0);
 
@@ -103,13 +103,13 @@ int main(int argc, char **argv) {
     Z = 0.0;
 
     // The texture we're going to render to
-    GLuint *renderedTexture1 = new GLuint[2 * Num_Boards * Num_Imposters];
+    GLuint* renderedTexture1 = new GLuint[2 * Num_Boards * Num_Imposters];
 
     for (int j = 0; j < Num_Imposters; j++) {
-        Tree *t1 =
+        Tree* t1 =
             new Tree(GetPositionMatrix(0, 0, 0), gen_rotation_deg(0, 0, 0));
         t1->gen_string("FB", rand() % 3 + rand() % 3);
-        GLuint *renderedTexture = &renderedTexture1[j * 2 * Num_Boards];
+        GLuint* renderedTexture = &renderedTexture1[j * 2 * Num_Boards];
         for (int i = 0; i < 2 * Num_Boards; i++) {
             int im = i % Num_Boards;
             Projection = glm::perspective(
@@ -136,7 +136,7 @@ int main(int argc, char **argv) {
             glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
                                  renderedTexture[i], 0);
             GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
-            glDrawBuffers(1, DrawBuffers);  // "1" is the size of DrawBuffers
+            glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
             // glDrawArrays(GL_TRIANGLES, 0, 3);
 
             // Always check that our framebuffer is ok
@@ -147,18 +147,18 @@ int main(int argc, char **argv) {
             glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
             glViewport(
                 0, 0, windowWidth,
-                windowHeight);  // Render on the whole framebuffer, complete
-                                // from the lower left corner to the upper right
+                windowHeight); // Render on the whole framebuffer, complete
+                               // from the lower left corner to the upper right
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
             View = glm::lookAt(
                 glm::vec3(
                     80 * sin(theta), 0,
-                    80 * cos(theta)),  // Camera is at (4,3,3), in World Space
-                glm::vec3(0, 50, 0),   // and looks at the origin
+                    80 * cos(theta)), // Camera is at (4,3,3), in World Space
+                glm::vec3(0, 50, 0),  // and looks at the origin
                 glm::vec3(0, 1,
-                          0)  // Head is up (set to 0,-1,0 to look upside-down)
+                          0) // Head is up (set to 0,-1,0 to look upside-down)
             );
             t1->render(Leaf_Object, Branch_Object);
             if (i == Num_Boards - 1) {
@@ -200,10 +200,10 @@ int main(int argc, char **argv) {
         View = glm::lookAt(
             glm::vec3(
                 X + 100 * sin(theta), Y + ht * sin(theta2),
-                Z + 100 * cos(theta)),  // Camera is at (4,3,3), in World Space
-            glm::vec3(X, Y, Z),         // and looks at the origin
+                Z + 100 * cos(theta)), // Camera is at (4,3,3), in World Space
+            glm::vec3(X, Y, Z),        // and looks at the origin
             glm::vec3(0, 1,
-                      0)  // Head is up (set to 0,-1,0 to look upside-down)
+                      0) // Head is up (set to 0,-1,0 to look upside-down)
         );
 
         // windy
